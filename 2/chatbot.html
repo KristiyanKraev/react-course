@@ -12,10 +12,20 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      const imagePath = "../pictures/";
+
       function ChatInput() {
+        const [inputText, setInputText] = React.useState("");
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
         return (
           <>
-            <input placeholder="Send a message to Chatbot" size="30" />
+            <input
+              placeholder="Send a message to Chatbot"
+              size="30"
+              onChange={saveInputText}
+            />
             <button>Send</button>
           </>
         );
@@ -34,10 +44,68 @@
         }*/
         return (
           <div>
-            {sender === "robot" && <img src="robot.png" width="50" />}
+            {sender === "robot" && (
+              <img src={`${imagePath}robot.png`} width="50" />
+            )}
             {message}
-            {sender === "user" && <img src="user.png" width="50" />}
+            {sender === "user" && (
+              <img src={`${imagePath}user.png`} width="50" />
+            )}
           </div>
+        );
+      }
+
+      function ChatMessages() {
+        const [chatMessages, setChatMessages] = React.useState([
+          {
+            message: "hello chatbot",
+            sender: "user",
+            id: "id1",
+          },
+          {
+            message: "Hello! How can I help you?",
+            sender: "robot",
+            id: "id2",
+          },
+          {
+            message: "Can yo get me todays date?",
+            sender: "user",
+            id: "id3",
+          },
+          {
+            message: "Today is December 7th",
+            sender: "robot",
+            id: "id4",
+          },
+        ]);
+        // const [chatMessages, setChatMessages] = array;
+        // const chatMessages = array[0];
+        // const setChatMessages = array[1];
+
+        function sendMessage() {
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: "test",
+              sender: "user",
+              id: crypto.randomUUID(),
+            },
+          ]);
+        }
+
+        return (
+          <>
+            <button onClick={sendMessage}>Send message</button>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
         );
       }
 
@@ -45,10 +113,7 @@
         return (
           <>
             <ChatInput />
-            <ChatMessage message="hello chatbot" sender="user" />
-            <ChatMessage message="Hello! How can I help you?" sender="robot" />
-            <ChatMessage message="Can yo get me todays date?" sender="user" />
-            <ChatMessage message="Today is December 7th" sender="robot" />
+            <ChatMessages />
           </>
         );
       }
