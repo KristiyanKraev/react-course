@@ -17,11 +17,17 @@
 
       function ChatInput({ chatMessages, setChatMessages }) {
         const [inputText, setInputText] = React.useState("");
+        const [isLoading, setIsLoading] = React.useState(false);
         function saveInputText(event) {
           setInputText(event.target.value);
         }
 
-        function sendMessage() {
+        async function sendMessage() {
+          if (isLoading || inputText === "") {
+            return;
+          }
+
+          setIsLoading(true);
           const newChatMessages = [
             ...chatMessages,
             {
@@ -30,10 +36,11 @@
               id: crypto.randomUUID(),
             },
           ];
+          setInputText("");
 
           setChatMessages(newChatMessages);
 
-          const response = Chatbot.getResponse(inputText);
+          const response = await Chatbot.getResponseAsync(inputText);
           setChatMessages([
             ...newChatMessages,
             {
@@ -42,8 +49,7 @@
               id: crypto.randomUUID(),
             },
           ]);
-
-          setInputText("");
+          setIsLoading(false);
         }
         return (
           <>
@@ -51,6 +57,14 @@
               placeholder="Send a message to Chatbot"
               size="30"
               onChange={saveInputText}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  sendMessage();
+                }
+                if (event.key === "Escape") {
+                  setInputText("");
+                }
+              }}
               value={inputText}
             />
             <button onClick={sendMessage}>Send</button>
@@ -59,16 +73,6 @@
       }
 
       function ChatMessage({ message, sender }) {
-        // const { message, sender } = props;
-        /*
-        if (sender === "robot") {
-          return (
-            <div>
-              <img src="robot.png" width="50" />
-              {message}
-            </div>
-          );
-        }*/
         return (
           <div>
             {sender === "robot" && (
@@ -121,9 +125,7 @@
             id: "id4",
           },
         ]);
-        // const [chatMessages, setChatMessages] = array;
-        // const chatMessages = array[0];
-        // const setChatMessages = array[1];
+
         return (
           <>
             <ChatInput
