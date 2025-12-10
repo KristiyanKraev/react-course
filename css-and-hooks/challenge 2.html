@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+
+    <style>
+      .text {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      input {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      button {
+        background-color: rgb(0, 123, 255);
+        color: white;
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App() {
+        const [showPassword, setShowPassword] = React.useState(false);
+        function displayPassword() {
+          setShowPassword(!showPassword);
+        }
+
+        const [time, setTime] = React.useState("");
+        function handleTime() {
+          let now = dayjs().format("HH:mm:ss");
+          setTime(now);
+        }
+
+        React.useEffect(() => {
+          setInterval(() => {
+            handleTime(), 1000;
+          });
+        }, []);
+        return (
+          <div>
+            <h3 className="text">Hello, welcome to my website </h3>
+            <div>
+              <input placeholder="Email"></input>
+            </div>
+            <div>
+              <input
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+              ></input>
+              <button onClick={displayPassword}>Show/Hide password</button>
+            </div>
+
+            <div>
+              <button>Login</button>
+              <button>Sign up</button>
+            </div>
+            <p>Current time: {time}</p>
+          </div>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

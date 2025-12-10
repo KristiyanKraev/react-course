@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+
+    <style>
+      body {
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+      .text {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      input {
+        padding: 10px;
+        margin: 5px;
+        border-radius: 5px;
+      }
+      button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 10px 15px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        background-color: rgb(222, 222, 222);
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <script src="react-basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function App() {
+        const [count, setCount] = React.useState(0);
+        const btnRef = React.useRef(null);
+        function resetCount() {
+          setCount(0);
+        }
+        function incrementCount() {
+          setCount(count + 1);
+          console.log(count);
+        }
+        function autoClick() {
+          setInterval(() => {
+            const btnElem = btnRef.current;
+            if (btnElem) {
+              btnElem.click();
+            }
+          }, 1000);
+        }
+        return (
+          <div>
+            <button onClick={incrementCount} ref={btnRef}>
+              {count === 1 ? `Clicked 1 time` : `Clicked ${count} times`}
+            </button>
+            <button onClick={resetCount}>Reset to 0</button>
+            <button onClick={autoClick}>Auto click</button>
+          </div>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
