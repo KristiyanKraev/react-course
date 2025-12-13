@@ -1,0 +1,16 @@
+.text {
+  font-family: Arial, Helvetica, sans-serif;
+}
+input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+button {
+  background-color: rgb(0, 123, 255);
+  color: white;
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+}
