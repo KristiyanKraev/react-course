@@ -146,7 +146,7 @@ export function CheckoutPage({ cart }) {
                 <div className="payment-summary-row">
                   <div>Estimated tax (10%):</div>
                   <div className="payment-summary-money">
-                    {formatMoney(paymentSummary.estimatedTaxCents)}
+                    {formatMoney(paymentSummary.taxCents)}
                   </div>
                 </div>
 
