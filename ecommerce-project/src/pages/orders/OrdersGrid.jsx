@@ -26,7 +26,7 @@ export function OrdersGrid({ orders }) {
               </div>
             </div>
 
-            <OrdersGridDetails products={order.products} />
+            <OrdersGridDetails order={order} />
           </div>
         );
       })}
