@@ -34,7 +34,6 @@ export function TrackingPage({ cart }) {
   const isPreparing = progressBarPercentage < 33;
   const isShipped = progressBarPercentage >= 33 && progressBarPercentage < 100;
   const isDelivered = progressBarPercentage === 100;
-  console.log(isPreparing, isShipped, isDelivered);
   return (
     <>
       <title>Tracking</title>
