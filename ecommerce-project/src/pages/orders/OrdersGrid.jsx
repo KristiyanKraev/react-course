@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money.js";
 import { OrdersGridDetails } from "./OrdersGridDetails.jsx";
 
-export function OrdersGrid({ orders }) {
+export function OrdersGrid({ orders, loadCart }) {
   return (
     <div className="orders-grid">
       {orders.map((order) => {
@@ -26,7 +26,7 @@ export function OrdersGrid({ orders }) {
               </div>
             </div>
 
-            <OrdersGridDetails order={order} />
+            <OrdersGridDetails order={order} loadCart={loadCart} />
           </div>
         );
       })}
