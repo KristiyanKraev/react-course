@@ -30,8 +30,12 @@ export function Header({ cart }) {
     <div className="header">
       <div className="left-section">
         <NavLink to="/" className="header-link">
-          <img className="logo" src={LogoWhite} />
-          <img className="mobile-logo" src={MobileLogoWhite} />
+          <img className="logo" src={LogoWhite} data-testid="header-logo" />
+          <img
+            className="mobile-logo"
+            src={MobileLogoWhite}
+            data-testid="header-mobile-logo"
+          />
         </NavLink>
       </div>
 
@@ -42,19 +46,32 @@ export function Header({ cart }) {
           placeholder="Search"
           value={search}
           onChange={updateSearchInput}
+          data-testid="header-search-bar"
         />
 
-        <button className="search-button" onClick={searchProducts}>
+        <button
+          className="search-button"
+          onClick={searchProducts}
+          data-testid="header-search-button"
+        >
           <img className="search-icon" src={SearchIcon} />
         </button>
       </div>
 
       <div className="right-section">
-        <NavLink className="orders-link header-link" to="/orders">
+        <NavLink
+          className="orders-link header-link"
+          to="/orders"
+          data-testid="header-orders-link"
+        >
           <span className="orders-text">Orders</span>
         </NavLink>
 
-        <NavLink className="cart-link header-link" to="/checkout">
+        <NavLink
+          className="cart-link header-link"
+          to="/checkout"
+          data-testid="header-cart-link"
+        >
           <img className="cart-icon" src={CartIcon} />
           <div className="cart-quantity">{totalQuantity}</div>
           <div className="cart-text">Cart</div>
