@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import Logo from "/src/assets/images/logo.png";
-import MobileLogo from "/src/assets/images/mobile-logo.png";
-import CheckoutLockIcon from "/src/assets/images/icons/checkout-lock-icon.png";
+import Logo from "../../assets/images/logo.png";
+import MobileLogo from "../../assets/images/mobile-logo.png";
+import CheckoutLockIcon from "../../assets/images/icons/checkout-lock-icon.png";
 import "./CheckoutHeader.css";
 
 export function CheckoutHeader({ cart }) {

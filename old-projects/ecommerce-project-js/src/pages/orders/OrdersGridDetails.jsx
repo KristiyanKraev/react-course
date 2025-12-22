@@ -2,7 +2,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { Fragment } from "react";
 import { Link } from "react-router";
-import BuyAgainIcon from "/src/assets/images/icons/buy-again.png";
+import BuyAgainIcon from "../../assets/images/icons/buy-again.png";
 export function OrdersGridDetails({ order, loadCart }) {
   const addToCart = async () => {
     await axios.post("/api/cart-items", {
