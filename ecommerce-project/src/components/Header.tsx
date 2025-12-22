@@ -7,7 +7,15 @@ import SearchIcon from "../assets/images/icons/search-icon.png";
 import CartIcon from "../assets/images/icons/cart-icon.png";
 
 import "./Header.css";
-export function Header({ cart }) {
+
+type HeaderProps = {
+  cart: {
+    productId: string;
+    quantity: number;
+    deliveryOptionId: string;
+  }[];
+};
+export function Header({ cart }: HeaderProps) {
   let totalQuantity = 0;
   cart.forEach((cartItem) => {
     totalQuantity += cartItem.quantity;
